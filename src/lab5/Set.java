@@ -31,7 +31,7 @@ public class Set <T> //Множина
     }
 
     public boolean contains(T value) //Перевіряє наявність у множині відповідного елемента
-    {
+    {git add out/production/Labs/lab5/Main.class out/production/Labs/lab5/Operation.class out/production/Labs/lab5/Set.class src/lab5/Operation.java src/lab5/Set.java
         for (T element : set)
             if (element == value) return true;
 
