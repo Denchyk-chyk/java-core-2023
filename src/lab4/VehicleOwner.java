@@ -38,6 +38,7 @@ public abstract class VehicleOwner //Власник транспортного �
     public int getDay() { return day; }
 
     public void setDay(int day) { this.day = day; }
+    public int getAge() { return age; }
 
     public Month getMonth() { return month; }
 
@@ -110,4 +111,20 @@ public abstract class VehicleOwner //Власник транспортного �
         else
             System.out.println("Вік недостатній для володіння відповідним транспортним засобом");
     }
+
+    //Конструктор
+    public VehicleOwner(String firstName, String lastName, int year, int day, Month month)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.year = year;
+        this.day = day;
+        this.month = month;
+
+        int monthNumber = this.month.ordinal() + 1;
+        age = 2023 - year - (monthNumber > 10 || (monthNumber == 10 && day > 22) ? 1 : 0);
+    }
+
+    //Порожній конструктор
+    public VehicleOwner() {}
 }

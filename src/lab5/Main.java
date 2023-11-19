@@ -1,6 +1,6 @@
 package lab5;
 
-import lab3.Writer;
+import lab3.Printer;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class Main
 
     private static <T> void print(Set<T> a, Set<T> b) //Здійснює всі дії з множинами
     {
-        Writer writer = Writer.getInstance(); //Клас для виводу масивів
+        Printer writer = Printer.getInstance(); //Клас для виводу масивів
 
         //Вивід множин
         writer.print("A", a.getSet());

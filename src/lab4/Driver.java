@@ -1,13 +1,15 @@
 package lab4;
 
-import lab3.Writer;
+import lab3.Printer;
 import java.util.Objects;
 
-class Driver extends VehicleOwner implements Printable //Водій
+public class Driver extends VehicleOwner implements Printable //Водій
 {
     private String mark = ""; //Марка автомобіля
     private String model = ""; //Модель автомобіля
     private String color = ""; //Колір автомобіля
+
+    private int number; //Номер об'єкта
     protected static int count; //Кількість водіїв
 
     public String getMark() {
@@ -34,6 +36,8 @@ class Driver extends VehicleOwner implements Printable //Водій
         this.color = color;
     }
 
+    public int getNumber() { return number; }
+
     @Override
     protected void setVehicleInfo() //Пеервизначення відповідного методу класу VehicleOwner для заповнення інформації про автомобіль
     {
@@ -45,7 +49,7 @@ class Driver extends VehicleOwner implements Printable //Водій
     @Override
     public String toString() //Перевизначення відповідного методу класу Object
     {
-        String general = firstName + " " + lastName + " - " + day + " " + month.getName() + " " + year + "р (" + age + "рр)";
+        String general = number + ". " + firstName + " " + lastName + " - " + day + " " + month.getName() + " " + year + "р (" + age + "рр)";
         String special = "Автомобіль" + (isOwner ? ": " + mark + " " + model + ", колір - " + color.toLowerCase() : " відсутній");
 
         return general + " | " + special;
@@ -73,7 +77,7 @@ class Driver extends VehicleOwner implements Printable //Водій
     public void print() //Реалізація відповідного методу інтерфейсу Printable для виводу в консоль інформації про об'єкт
     {
         System.out.println(this);
-        Writer.getInstance().writeSpacer(isOwner ? "+" : "|");
+        Printer.getInstance().printSpacer(isOwner ? "+" : "|");
     }
 
     public Driver clone() //Створення копії об'єкта
@@ -112,9 +116,42 @@ class Driver extends VehicleOwner implements Printable //Водій
                 compare(color, driver.color, "колір автомобіля");
     }
 
+    private void setNumber() //Збереження номера об'єкта
+    {
+        count++;
+        number = count;
+    }
+    
     public void instantiate() //Створення екземпляру класу шляхом задавання значень всім його полям
     {
         instantiate(18);
-        count++;
+        setNumber();
+    }
+
+    //Коструктор, якщо вік достатній
+
+    public Driver(String firstName, String lastName, int year, int day, Month month, String mark, String model, String color)
+    {
+        super(firstName, lastName, year, day, month);
+        isOwner = true;
+        this.mark = mark;
+        this.model = model;
+        this.color = color;
+        setNumber();
+    }
+
+    //Коструктор, якщо вік недостатній
+    public Driver(String firstName, String lastName, int year, int day, Month month)
+    {
+        super(firstName, lastName, year, day, month);
+        isOwner = false;
+        setNumber();
+    }
+
+    //Порожній констуктор
+    public Driver()
+    {
+        super();
+        setNumber();
     }
 }

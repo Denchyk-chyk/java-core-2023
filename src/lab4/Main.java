@@ -1,31 +1,31 @@
 package lab4;
 
-import lab3.Writer;
+import lab3.Printer;
 
 public class Main
 {
     public static void main(String[] args)
     {
         Reader reader = new Reader(); //Для зчитування даних з консолі2
-        Writer writer = Writer.getInstance(); //Для форматованого виводу
+        Printer writer = Printer.getInstance(); //Для форматованого виводу
 
         while (true)
         {
-            writer.writeSpacer(); //Тут і надалі рооздільник з "_"
+            writer.printSpacer(); //Тут і надалі рооздільник з "_"
             int count = reader.readInteger("Кількість водіїв (0 для виходу)"); //Вибів кількості водіїв
             if (count <= 0) return; //Вихід
 
             Driver[] drivers = new Driver[count]; //Ініціалізація масиву водіїв із кількістю, вибраною користувачем
-            writer.writeSpacer();
+            writer.printSpacer();
 
             for (int i = 0; i < count; i++) (drivers[i] = new Driver()).instantiate(); //Ввід інформації про водіїв
 
-            writer.writeSpacer();
+            writer.printSpacer();
             print(drivers); //Вивід інформації про водіїв
 
             //Ствоерння анонімного класу для виводу клькості водіїв та, власне, вивід
             System.out.println("Загальна кількість водіїв: " + (new Driver() { public int getCount() { return count; } }).getCount());
-            writer.writeSpacer();
+            writer.printSpacer();
 
             //Попарне порівння всіх водіїв із виводом в консоль матриці
             for (Driver first : drivers)
@@ -33,7 +33,7 @@ public class Main
                 for (Driver second : drivers) System.out.print((first.equals(second) ? "1" : "0") + " ");
                 System.out.print("\n");
             }
-            writer.writeSpacer();
+            writer.printSpacer();
 
             //Порівняння першого та останнього водіїв, а також першого водія та його клона методом compareTo()
             System.out.println(drivers[0].compareTo(drivers[drivers.length-1]));
