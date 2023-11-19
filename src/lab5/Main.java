@@ -55,7 +55,6 @@ public class Main
 
     private static <T> void print(Set<T> a, Set<T> b) //Здійснює всі дії з множинами
     {
-        Operation<T> operation = new Operation<>(); //Клас з операціями
         Writer writer = Writer.getInstance(); //Клас для виводу масивів
 
         //Вивід множин
@@ -63,10 +62,10 @@ public class Main
         writer.print("B", b.getSet());
 
         //Вивід результатів операцій
-        writer.print("A ∪ B", operation.unionSets(a, b).getSet());
-        writer.print("A ∩ B", operation.intersectionSets(a, b).getSet());
-        writer.print("A \\ B", operation.differanceSets(a, b).getSet());
-        writer.print("B \\ A", operation.differanceSets(b, a).getSet());
-        writer.print("", operation.symmetricDiffSets(a, b).getSet());
+        writer.print("A ∪ B", Operator.unionSets(a, b).getSet());
+        writer.print("A ∩ B", Operator.intersectionSets(a, b).getSet());
+        writer.print("A \\ B", Operator.differanceSets(a, b).getSet());
+        writer.print("B \\ A", Operator.differanceSets(b, a).getSet());
+        writer.print("", Operator.symmetricDiffSets(a, b).getSet());
     }
 }
