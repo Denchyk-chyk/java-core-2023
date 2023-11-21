@@ -7,7 +7,7 @@ public class Main
     public static void main(String[] args)
     {
         Reader reader = new Reader(); //Для зчитування даних з консолі2
-        Printer writer = Printer.getInstance(); //Для форматованого виводу
+        Printer writer = Printer.get(); //Для форматованого виводу
 
         while (true)
         {

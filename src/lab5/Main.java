@@ -55,7 +55,7 @@ public class Main
 
     private static <T> void print(Set<T> a, Set<T> b) //Здійснює всі дії з множинами
     {
-        Printer writer = Printer.getInstance(); //Клас для виводу масивів
+        Printer writer = Printer.get(); //Клас для виводу масивів
 
         //Вивід множин
         writer.print("A", a.getSet());

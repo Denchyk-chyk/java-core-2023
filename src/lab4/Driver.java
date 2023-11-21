@@ -77,7 +77,7 @@ public class Driver extends VehicleOwner implements Printable //Водій
     public void print() //Реалізація відповідного методу інтерфейсу Printable для виводу в консоль інформації про об'єкт
     {
         System.out.println(this);
-        Printer.getInstance().printSpacer(isOwner ? "+" : "|");
+        Printer.get().printSpacer(isOwner ? "+" : "|");
     }
 
     public Driver clone() //Створення копії об'єкта

@@ -1,5 +1,7 @@
 package lab3;
 
+import java.util.Scanner;
+
 public class Printer //Клас призначений для спрощення форматованого виводу в консоль
 {
     private static Printer instance;
@@ -13,11 +15,18 @@ public class Printer //Клас призначений для спрощення
         System.out.println(token.repeat(80));
     }
 
-    public void printHeader(String header, boolean top, boolean bottom)
+    public void print(boolean top, boolean bottom, String... lines) //Виводить рядки із роздільниками
     {
         if (top) printSpacer();
-        System.out.println(header);
+        for (String line : lines)
+            System.out.println(line);
         if (bottom) printSpacer();
+    }
+
+    public String printInput(String header, Scanner scanner)
+    {
+        System.out.println(header);
+        return scanner.nextLine();
     }
 
     public <T> void print(String name, T[] array)
@@ -33,7 +42,7 @@ public class Printer //Клас призначений для спрощення
 
     private Printer() {}
 
-    public static Printer getInstance()
+    public static Printer get()
     {
         if (instance == null)
             instance = new Printer();

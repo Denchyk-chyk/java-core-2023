@@ -72,7 +72,7 @@ public class Maih
         print(deque, "ArrayDeque без дублікатів");
 
         //Вивід в зворотному порядку
-        Printer.getInstance().printHeader("ArrayDeque в зворотному порядку:", false, true);
+        Printer.get().print(false, true, "ArrayDeque в зворотному порядку:");
 
         for (int i = deque.size(); i > 0; i--)
         {
@@ -82,13 +82,13 @@ public class Maih
         }
 
         //Вивід в зворотному порядку через Iterator
-        Printer.getInstance().printHeader("ArrayDeque в зворотному порядку через iterartor:", true, true);
+        Printer.get().print(true, true, "ArrayDeque в зворотному порядку через iterartor:");
         Iterator<Driver> iterator = deque.descendingIterator();
 
         while (iterator.hasNext())
             System.out.println(iterator.next());
 
-        Printer.getInstance().printSpacer();
+        Printer.get().printSpacer();
 
         //Зміна атрибутів (Збільшення віку всіх водіїв, що народились до 1990-о року на 7 років)
         for (Driver driver : drivers)
@@ -133,12 +133,12 @@ public class Maih
     //Метод для виводу колекції
     private static void print(Collection<Driver> drivers, String header)
     {
-        Printer.getInstance().printHeader(header + ":", false, true); //Заголовок та розділльник
+        Printer.get().print(false, true, header + ":"); //Заголовок та розділльник
 
         //foreach
         for (Driver driver : drivers)
             System.out.println(driver);
 
-        Printer.getInstance().printSpacer(); //Розділльник
+        Printer.get().printSpacer(); //Розділльник
     }
 }
