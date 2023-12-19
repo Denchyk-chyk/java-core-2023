@@ -1,6 +1,6 @@
 package lab3;
 
-class Driver
+public class Driver
 {
     private String firstName; //Ім'я
     private String lastName; //Прізвище

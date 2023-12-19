@@ -1,8 +1,6 @@
 package lab6;
 
-import lab3.Printer;
-import lab4.Driver;
-import lab4.Month;
+import lab3.*;
 
 import java.util.*;
 
@@ -13,24 +11,21 @@ public class Maih
 
         Driver[] drivers = new Driver[] //Масив з вхідними даними
         {
-            new Driver("Іван" ,"Мельник", 2000, 17, Month.DECEMBER, "Toyota", "Raf4", "сірий"),
-            new Driver("Сергій" ,"Бойчук", 1988, 12, Month.JUNE, "BMW", "M5", "чорний"),
-            new Driver("Андрій" ,"Григорчук", 2008, 22, Month.AUGUST),
-            new Driver("Оксана", "Петренко", 1995, 5, Month.AUGUST, "Honda", "Civic", "червоний"),
-            new Driver("Анна", "Коваленко", 1990, 20, Month.MARCH, "Mercedes", "CLA", "синій"),
-            new Driver("Максим", "Сидоренко", 1985, 10, Month.NOVEMBER, "Audi", "A6", "сріблястий"),
-            new Driver("Олександр", "Григоренко", 2002, 8, Month.SEPTEMBER, "Ford", "Focus", "зелений"),
-            new Driver("Тетяна", "Павленко", 1998, 15, Month.MAY, "Chevrolet", "Malibu", "білий"),
-            new Driver("Дмитро", "Кузьменко", 1983, 25, Month.APRIL, "Hyundai", "Elantra", "сірий"),
-            new Driver("Наталія", "Лисенко", 1993, 3, Month.JULY, "Volkswagen", "Golf", "фіолетовий"),
-            new Driver("Олег", "Петров", 1980, 12, Month.JANUARY, "Lexus", "RX", "золотий"),
-            new Driver("Ірина", "Соколова", 1997, 18, Month.OCTOBER),
-            new Driver("Юрій", "Кравчук", 1987, 7, Month.FEBRUARY, "Kia", "Sportage", "сірий"),
-            new Driver("Марія", "Коваль", 2005, 11, Month.APRIL, "Nissan", "Altima", "рожевий"),
-            new Driver("Артем", "Шевченко", 1991, 22, Month.JANUARY, "Mazda", "CX-5", "сірий"),
-            new Driver("Євгенія", "Ткачук", 1989, 9, Month.AUGUST),
-            new Driver("Віталій", "Козлов", 2001, 14, Month.MAY, "Jeep", "Grand Cherokee", "бордовий"),
-            new Driver("Олена", "Іванова", 1994, 6, Month.JULY, "Suzuki", "Swift", "сірий")
+            new Driver("Іван" ,"Мельник", 27, "Toyota", "Raf4", "сірий"),
+            new Driver("Сергій" ,"Бойчук", 34, "BMW", "M5", "чорний"),
+            new Driver("Оксана", "Петренко", 52, "Honda", "Civic", "червоний"),
+            new Driver("Анна", "Коваленко", 20, "Mercedes", "CLA", "синій"),
+            new Driver("Максим", "Сидоренко", 19, "Audi", "A6", "сріблястий"),
+            new Driver("Олександр", "Григоренко", 48, "Ford", "Focus", "зелений"),
+            new Driver("Тетяна", "Павленко", 25,  "Chevrolet", "Malibu", "білий"),
+            new Driver("Дмитро", "Кузьменко", 33, "Hyundai", "Elantra", "сірий"),
+            new Driver("Наталія", "Лисенко", 73, "Volkswagen", "Golf", "фіолетовий"),
+            new Driver("Олег", "Петров", 62, "Lexus", "RX", "золотий"),
+            new Driver("Юрій", "Кравчук", 47, "Kia", "Sportage", "сірий"),
+            new Driver("Марія", "Коваль", 31, "Nissan", "Altima", "рожевий"),
+            new Driver("Артем", "Шевченко", 24, "Mazda", "CX-5", "сірий"),
+            new Driver("Віталій", "Козлов", 24, "Jeep", "Grand Cherokee", "бордовий"),
+            new Driver("Олена", "Іванова", 34, "Suzuki", "Swift", "сірий")
         };
 
         ArrayDeque<Driver> deque = new ArrayDeque<>(); //Перша колекція
@@ -93,8 +88,8 @@ public class Maih
         //Зміна атрибутів (Збільшення віку всіх водіїв, що народились до 1990-о року на 7 років)
         for (Driver driver : drivers)
         {
-            if (driver.getYear() < 1990)
-                driver.setYear(driver.getYear() + 7);
+            if (driver.getAge() < 1990)
+                driver.setAge(driver.getAge() + 7);
         }
 
         print(deque, "ArrayDeque");

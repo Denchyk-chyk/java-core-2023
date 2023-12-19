@@ -1,25 +1,46 @@
 package lab4;
 
-import lab3.Printer;
+import java.lang.reflect.Method;
 import java.util.Objects;
 
-public class Driver extends VehicleOwner implements Printable //Водій
+public abstract class Driver implements Paintable //Водій
 {
-    private String mark = ""; //Марка автомобіля
-    private String model = ""; //Модель автомобіля
-    private String color = ""; //Колір автомобіля
+    protected String firstName;
+    protected String lastName;
+    protected Mark mark;
+    protected String model;
+    protected String color;
 
-    private int number; //Номер об'єкта
     protected static int count; //Кількість водіїв
 
-    public String getMark() {
+    @Name("Ім'я")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Name("Прізвище")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Name("Марка автомобіля")
+    public Mark getMark() {
         return mark;
     }
 
-    public void setMark(String mark) {
+    public void setMark(Mark mark) {
         this.mark = mark;
     }
 
+    @Name("Модель автомобіля")
     public String getModel() {
         return model;
     }
@@ -28,6 +49,7 @@ public class Driver extends VehicleOwner implements Printable //Водій
         this.model = model;
     }
 
+    @Name("Колір автомобіля")
     public String getColor() {
         return color;
     }
@@ -36,122 +58,55 @@ public class Driver extends VehicleOwner implements Printable //Водій
         this.color = color;
     }
 
-    public int getNumber() { return number; }
-
     @Override
-    protected void setVehicleInfo() //Пеервизначення відповідного методу класу VehicleOwner для заповнення інформації про автомобіль
+    public boolean equals(Object o)
     {
-        mark = reader.readLine("Марка автомобіля");
-        model = reader.readLine("Модель автомобіля");
-        color = reader.readLine("Колір автомобіля");
+        if (!(o instanceof Driver driver)) return false;
+        return Objects.equals(firstName, driver.firstName) &&
+                Objects.equals(lastName, driver.lastName) &&
+                Objects.equals(mark, driver.mark) &&
+                Objects.equals(model, driver.model) &&
+                Objects.equals(color, driver.color);
     }
 
-    @Override
-    public String toString() //Перевизначення відповідного методу класу Object
+
+    //Основна частина конструктора
+    public void instant(String firstName, String lastName, Mark mark, String model, String color)
     {
-        String general = number + ". " + firstName + " " + lastName + " - " + day + " " + month.getName() + " " + year + "р (" + age + "рр)";
-        String special = "Автомобіль" + (isOwner ? ": " + mark + " " + model + ", колір - " + color.toLowerCase() : " відсутній");
-
-        return general + " | " + special;
-    }
-
-    @Override
-    public int hashCode() //Перевизначення відповідного методу класу Object
-    {
-        return Objects.hash(firstName, lastName, day, month, year, model, mark, color);
-    }
-
-    @Override
-    public boolean equals(Object obj) //Перевизначення відповідного методу класу Object
-    {
-        if (obj instanceof Driver driver)
-            return Objects.equals(firstName, driver.firstName) && Objects.equals(lastName, driver.lastName) &&
-                    Objects.equals(day, driver.day) && Objects.equals(month, driver.month) &&
-                    Objects.equals(year, driver.year) && Objects.equals(model, driver.model) &&
-                    Objects.equals(mark, driver.mark) && Objects.equals(color, driver.color) &&
-                    Objects.equals(hashCode(), driver.hashCode());
-        else return false;
-    }
-
-    @Override
-    public void print() //Реалізація відповідного методу інтерфейсу Printable для виводу в консоль інформації про об'єкт
-    {
-        System.out.println(this);
-        Printer.get().printSpacer(isOwner ? "+" : "|");
-    }
-
-    public Driver clone() //Створення копії об'єкта
-    {
-        Driver driver = new Driver();
-
-        driver.firstName = firstName;
-        driver.lastName = lastName;
-        driver.day = day;
-        driver.month = month;
-        driver.year = year;
-        driver.age = age;
-        driver.mark = mark;
-        driver.model = model;
-        driver.color = color;
-
-        return driver;
-    }
-
-    private String compare(Object internal, Object external, String name) //Порівння 2 значень та форматований вивід результату перевірки
-    {
-        return Objects.equals(internal, external) ? "" : "\n " + name + ": " + internal + " ≠ " + external;
-    }
-
-    public String compareTo(Driver driver) //Порівняння 2 об'єктів та вивід інформації про поля, що відрізняються
-    {
-        if (equals(driver)) return "Об'єкти ідентичні";
-        else return "Об'єкти мають відміннсті:" +
-                compare(firstName, driver.firstName, "ім'я") +
-                compare(lastName, driver.lastName, "прізвище") +
-                compare(day, driver.day, "день народження") +
-                compare(month, driver.month, "місяць народження") +
-                compare(year, driver.year, "рік народження") +
-                compare(mark, driver.mark, "марка автомобіля") +
-                compare(model, driver.model, "модель автомобіля") +
-                compare(color, driver.color, "колір автомобіля");
-    }
-
-    private void setNumber() //Збереження номера об'єкта
-    {
-        count++;
-        number = count;
-    }
-    
-    public void instantiate() //Створення екземпляру класу шляхом задавання значень всім його полям
-    {
-        instantiate(18);
-        setNumber();
-    }
-
-    //Коструктор, якщо вік достатній
-
-    public Driver(String firstName, String lastName, int year, int day, Month month, String mark, String model, String color)
-    {
-        super(firstName, lastName, year, day, month);
-        isOwner = true;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.mark = mark;
         this.model = model;
         this.color = color;
-        setNumber();
+        count++;
     }
 
-    //Коструктор, якщо вік недостатній
-    public Driver(String firstName, String lastName, int year, int day, Month month)
+    @Override
+    public String toString()
     {
-        super(firstName, lastName, year, day, month);
-        isOwner = false;
-        setNumber();
+        return firstName + " " + lastName + " | " + mark.getName() + " " + model + ", колір - " + color.toLowerCase();
     }
 
-    //Порожній констуктор
-    public Driver()
+    public String compareTo(Object o)
     {
-        super();
-        setNumber();
+        Class<?> type = o.getClass();
+        if (type != getClass()) return "Водії різних типів";
+        if (equals(o)) return "Водії однакові";
+        else
+        {
+            StringBuilder differences = new StringBuilder("Водії різні (зокрема різне наступне):");
+            for (Method method : type.getMethods()) //Порівнянн всіх методів, що мають відповідну анотацію
+            {
+                if (method.isAnnotationPresent(Name.class))
+                {
+                    try //Заглушка
+                    {
+                        if (!Objects.equals(method.invoke(this), method.invoke(o)))
+                            differences.append(" ").append(method.getAnnotation(Name.class).value().toLowerCase());
+                    } catch (Exception e) {};
+                }
+            }
+            return differences.toString();
+        }
     }
 }
