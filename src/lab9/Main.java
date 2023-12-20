@@ -1,6 +1,5 @@
 package lab9;
 
-import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class Main
@@ -8,20 +7,20 @@ public class Main
     public static void main(String[] args)
     {
         Methods methods = new Methods();
-        calculate(methods, -1, -2);
-        calculate(methods, -1, 2);
-        calculate(methods, 0, 2);
-        calculate(methods, 1, 2);
-
+        tryCalculate(methods, -1, -2);
+        tryCalculate(methods, -1, 2);
+        tryCalculate(methods, 0, 0);
+        tryCalculate(methods, 1, 2);
 
         safeInput();
     }
 
-    private static void calculate(Methods methods, float a, float b) //Обробляє помилки в Methods
+    private static void tryCalculate(Methods methods, float a, float b) //Обробляє помилки в Methods
     {
         try
         {
-            System.out.println(methods.add(a, b));
+            methods.check(a, b);
+            System.out.println(true);
         }
         catch (Exception e) //Обробка помилки
         {

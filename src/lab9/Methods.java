@@ -2,7 +2,7 @@ package lab9;
 
 public class Methods {
 
-    private void check(float a, float b) throws IllegalArgumentException, ArithmeticException, IllegalAccessException, NullPointerException //Перевіряє всі можливі виключення
+    public void check(float a, float b) throws  IllegalAccessException //Перевіряє всі можливі виключення
     {
         if (a < 0 && b > 0)
             throw new IllegalArgumentException();
@@ -14,25 +14,25 @@ public class Methods {
             throw new NullPointerException();
     }
 
-    public float add(float a, float b) throws IllegalArgumentException, ArithmeticException, IllegalAccessException, NullPointerException //+
+    public float add(float a, float b) throws IllegalAccessException //+
     {
         check(a, b);
         return a + b;
     }
 
-    public float remove(float a, float b) throws IllegalArgumentException, ArithmeticException, IllegalAccessException, NullPointerException //-
+    public float remove(float a, float b) throws IllegalAccessException //-
     {
         check(a, b);
         return a - b;
     }
 
-    public float multiple(float a, float b) throws IllegalArgumentException, ArithmeticException, IllegalAccessException, NullPointerException //×
+    public float multiple(float a, float b) throws IllegalAccessException //×
     {
         check(a, b);
         return a * b;
     }
 
-    public float divide(float a, float b) throws IllegalArgumentException, ArithmeticException, IllegalAccessException, NullPointerException //÷
+    public float divide(float a, float b) throws IllegalAccessException //÷
     {
         check(a, b);
         return a / b;
